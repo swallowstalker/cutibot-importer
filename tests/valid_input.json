@@ -1,0 +1,15 @@
+[
+  {
+    "description": "Tahun Baru Masehi",
+    "date_list": [
+      "2018-01-01"
+    ],
+    "holiday_streak": {
+      "start": "2017-12-29",
+      "end": "2018-01-02"
+    },
+    "leave_recommendation": [
+      "2017-12-29", "2018-01-02"
+    ]
+  }
+]
