@@ -1,9 +1,11 @@
-package util
+package app_test
 
 import (
 	"encoding/json"
 	"os"
 	"testing"
+
+	"github.com/swallowstalker/cutibot-importer/app"
 )
 
 func TestParsingValidInputJSON(t *testing.T) {
@@ -13,7 +15,7 @@ func TestParsingValidInputJSON(t *testing.T) {
 		t.Errorf("Error while opening file pointer: " + err.Error())
 	}
 
-	var holidayList []Holiday
+	var holidayList []app.Holiday
 	decoder := json.NewDecoder(fp)
 	err = decoder.Decode(&holidayList)
 	if err != nil {
@@ -24,7 +26,7 @@ func TestParsingValidInputJSON(t *testing.T) {
 
 	if len(holidayList[0].DateList) > 1 {
 		t.Errorf("Data is incorrect, date list is more than 1")
-	} else if parsedTime.Format(DATE_STRING_LAYOUT) != "2018-01-01" {
+	} else if parsedTime.Format(app.DATE_STRING_LAYOUT) != "2018-01-01" {
 		t.Errorf("Data is incorrect, " + parsedTime.String())
 	}
 
@@ -37,7 +39,7 @@ func TestParsingInvalidInputJSON(t *testing.T) {
 		t.Errorf("Error while opening file pointer: " + err.Error())
 	}
 
-	var holidayList []Holiday
+	var holidayList []app.Holiday
 	decoder := json.NewDecoder(fp)
 	err = decoder.Decode(&holidayList)
 	if err != nil {
@@ -48,7 +50,7 @@ func TestParsingInvalidInputJSON(t *testing.T) {
 
 	if len(holidayList[0].DateList) > 1 {
 		t.Errorf("Data is incorrect, date list is more than 1")
-	} else if parsedTime.Format(DATE_STRING_LAYOUT) != "2018-01-03" {
+	} else if parsedTime.Format(app.DATE_STRING_LAYOUT) != "2018-01-03" {
 		t.Errorf("Data is incorrect, " + parsedTime.String())
 	}
 

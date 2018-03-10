@@ -1,9 +1,12 @@
-package util
+package app
 
 import (
 	"encoding/json"
 	"time"
 )
+
+//TODO needs db interface
+//TODO needs importer interface
 
 type Holiday struct {
 	Description         string               `json:"description"`
@@ -23,10 +26,13 @@ type TimeFromDateString struct {
 
 const DATE_STRING_LAYOUT = "2006-01-02"
 
+type Importer interface {
+	Import(targetURI string) (*Holiday, error)
+}
+
 func (d *TimeFromDateString) UnmarshalJSON(data []byte) error {
 
 	var unconvertedTime string
-
 	err := json.Unmarshal(data, &unconvertedTime)
 	if err != nil {
 		return err
