@@ -11,7 +11,7 @@ import (
 type FileImporter struct {
 }
 
-func (fi FileImporter) Import(filename string) (*app.Holiday, error) {
+func (fi FileImporter) Import(filename string) ([]app.Holiday, error) {
 
 	fp, err := os.Open(filename)
 	if err != nil {
@@ -23,11 +23,11 @@ func (fi FileImporter) Import(filename string) (*app.Holiday, error) {
 		return nil, err
 	}
 
-	var holiday app.Holiday
+	var holiday []app.Holiday
 	err = json.Unmarshal(jsonData, &holiday)
 	if err != nil {
 		return nil, err
 	}
 
-	return &holiday, nil
+	return holiday, nil
 }
